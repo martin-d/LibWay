@@ -1,0 +1,12 @@
+{
+    "book1" : {
+        "id": 1,
+       "name" : "Hitchhiker's Guide To The Galaxy",
+       "author" : "Douglas Adams"
+    },
+    "book2" : {
+        "id": 2,
+       "name" : "Pedagogical Poem",
+       "author" : "Makarenko"
+    }
+ }
