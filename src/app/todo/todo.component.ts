@@ -81,4 +81,32 @@ export class TodoComponent implements OnInit {
     );
   }
 
+  completeTodo(todo: Todo): void {
+    todo.completed = !todo.completed;
+    this.todoService.updateTodo(todo)
+    .subscribe(
+        data => {
+            // do nothing
+        },
+        error => {
+            todo.completed = !todo.completed;
+            this.errorMessage = <any>error;
+            console.log('complete error', this.errorMessage);
+        });
+  }
+
+  deleteTodo(todo: Todo): void {
+    this.todoService.deleteTodo(todo)
+    .subscribe(
+    data => {
+        let index = this.todoList.indexOf(todo);
+        this.todoList.splice(index, 1);
+    },
+    error => {
+        todo.completed = !todo.completed;
+        this.errorMessage = <any>error;
+        console.log('complete error', this.errorMessage);
+    });
+  }
+
 }
