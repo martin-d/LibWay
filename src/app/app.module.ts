@@ -12,6 +12,7 @@ import { HttpModule } from '@angular/http';
 import { SignupComponent } from './signup/signup.component';
 import { TodoComponent } from './todo/todo.component';
 import { TodoService } from './shared/services/todo.service';
+import { IsLoggedInGuard } from './shared/guards/is-logged-in.guard';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { TodoService } from './shared/services/todo.service';
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [AuthService, TodoService],
+  providers: [AuthService, TodoService, IsLoggedInGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -15,7 +15,8 @@ export class TodoService {
     })
     .catch(error => {
         console.log('save error', error)
-        return error;
+        var todoArray : Todo[] = Todo[0];
+        return todoArray;
     });
   }
 
@@ -37,7 +38,8 @@ export class TodoService {
     .map((res: Response) => <Todo>res.json())
     .catch(error => {
         console.log('update error', error);
-        return error;
+        var todoArray : Todo[] = Todo[0];
+        return todoArray;
     });
   }
 
