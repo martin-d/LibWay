@@ -11,6 +11,7 @@ import { AuthService } from './shared/services/auth.service';
 import { HttpModule } from '@angular/http';
 import { SignupComponent } from './signup/signup.component';
 import { TodoComponent } from './todo/todo.component';
+import { TodoService } from './shared/services/todo.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { TodoComponent } from './todo/todo.component';
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, TodoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
