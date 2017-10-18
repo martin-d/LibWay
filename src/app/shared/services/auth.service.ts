@@ -26,4 +26,20 @@ export class AuthService {
         });
   }
 
+  signup(email: string, password: string): Observable<boolean | Response> {
+    const loginInfo = { 'email': email, 'password': password };
+    return this.http.post("https://dj-sails-todo.azurewebsites.net/user/", loginInfo, this.options)
+      .do((res: Response) => {
+        if (res) {
+          return Observable.of(true);
+        }
+   
+        return Observable.of(false);
+      })
+      .catch(error => {
+        console.log('signup error', error);
+        return Observable.of(false);
+      });
+   }
+
 }
