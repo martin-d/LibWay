@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  environmentName: 'Development',
+  apiBaseUrl: 'https://dj-sails-todo.azurewebsites.net'
 };
