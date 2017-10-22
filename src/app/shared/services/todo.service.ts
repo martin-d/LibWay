@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { Todo } from '../classes/todo';
+import { Book } from '../classes/book';
 import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class TodoService {
   private options = new RequestOptions({ withCredentials: true });
   private url: string = `${environment.apiBaseUrl}/todo`;
+  private testUrl: string = 'http://localhost:8081/listBooks';
 
   constructor(private http: Http) { }
 
@@ -31,6 +33,19 @@ export class TodoService {
     })
     .catch(error => {
         console.log('get error', error);
+        return error;
+    });
+  }
+
+  getStuff(): Observable<Array<Book>>{
+    let url = this.testUrl;
+
+    return this.http.get(url, this.options)
+    .map((res: Response) => {
+        return <Array<Book>>res.json();
+    })
+    .catch(error => {
+        console.log("error", error);
         return error;
     });
   }

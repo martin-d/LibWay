@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 import { TodoService } from '../shared/services/todo.service';
 import { Todo } from '../shared/classes/todo';
+import { Book } from '../shared/classes/book';
 
 @Component({
   selector: 'app-todo',
@@ -13,6 +14,7 @@ export class TodoComponent implements OnInit {
   errorMessage: string;
   addForm: FormGroup;
   todoList: Array<Todo> = [];
+  bookList: Array<Book> = [];
   formErrors = {
     'item': ''
   };
@@ -32,7 +34,9 @@ export class TodoComponent implements OnInit {
     });
     this.addForm.valueChanges.debounceTime(1000).subscribe(data => this.onValueChanged(data));
     this.onValueChanged();
-    this.getTodoListAll();
+    // this.getTodoListAll();
+
+    this.getStuffFromServer();
   }
 
   onValueChanged(data?: any) {
@@ -67,6 +71,19 @@ export class TodoComponent implements OnInit {
     error => {
         this.errorMessage = <any>error;
     });
+  }
+
+  getStuffFromServer(): void {
+    this.todoService.getStuff()
+      .subscribe(
+        data => {
+          this.bookList = data;
+          console.log(this.bookList);
+        },
+        error => {
+          this.errorMessage = <any>error;
+        }
+      )
   }
 
   getTodoListAll(): void {
