@@ -19,12 +19,19 @@
   <!-- <div *ngIf="formErrors.item" class="alert alert-danger">
     {{ formErrors.item }}
   </div> -->
+  <!-- {{bookList[0]}} -->
+
+  <!-- <div ng-repeat="book in bookList">
+      {{book.id}} is test {{book.name}}
+  </div> -->
+
+
 
   <div class="row todo" *ngFor="let bookItem of bookList">
-      {{bookItem.Id}} is named "{{bookItem.name}}" by author {{bookItem.author}}
+      {{bookItem.id}} is named "{{bookItem.name}}" by author {{bookItem.author}}
   </div>
 
-  <div class="row todo" *ngFor="let todoItem of todoList">
+  <!-- <div class="row todo" *ngFor="let todoItem of todoList">
     <div class="col-1" (click)="completeTodo(todoItem)">
       <i [className]="todoItem.completed ? 'fa fa-check-square-o' : 'fa fa-square-o'"></i>
     </div>
@@ -72,5 +79,5 @@
           </tr>
       </tbody>
       </table>
-  </div>
+  </div> -->
 </div>

@@ -78,7 +78,23 @@ export class TodoComponent implements OnInit {
       .subscribe(
         data => {
           this.bookList = data;
-          console.log(this.bookList);
+
+          // for(var i = 0; i<this.bookList.length; i++){
+          //   this.bookList
+          // }
+          // var bookListString = this.bookList;
+          // var testBookList = new Array <Book>();
+          // var testBookList = JSON.stringify(data);
+          // testBookList = "["+testBookList+"]";
+          // this.bookList = JSON.parse(testBookList);
+
+          // var listOfBooks = new Array<Book>();
+          // for (var i = 0; i < this.bookList.length; i++) {
+
+          // }
+          
+          
+          console.log(data);
         },
         error => {
           this.errorMessage = <any>error;
