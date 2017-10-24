@@ -8,6 +8,6 @@ import { FooterComponent } from './shared/footer/footer.component';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'This is My Life Now';
+  title = 'Search for Book';
   pizzaCat = 'https://i.pinimg.com/736x/59/74/a8/5974a849873f241c69819d199bace861--funny-shit-funny-pics.jpg'
 }
