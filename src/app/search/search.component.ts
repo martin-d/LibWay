@@ -15,7 +15,6 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
   }
 
-
   search(formValues) {
     this.searchService.search(formValues.search)
         .subscribe(result => {
