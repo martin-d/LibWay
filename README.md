@@ -1,5 +1,20 @@
-<<<<<<< HEAD
-# Ng2ws
+# LibWay
+
+This project has 2 parts: api and app.
+
+For local development:
+
+To run the api, must have node.js and express.js installed.
+Run command `node src/api/server.js`
+
+To run the app, must have angular-cli intalled.
+Run command `ng serve`
+
+# TODO
+
+Find "TODO" in the code and do it.
+
+Here is the original angular-cli documentation for reference:
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.7.
 
