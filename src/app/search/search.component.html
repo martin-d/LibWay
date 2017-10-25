@@ -1,0 +1,20 @@
+<!-- <h1>Search</h1> -->
+<hr>
+<div>
+    <form #searchForm="ngForm" (ngSubmit)="search(searchForm.value)" autocomplete="off" novalidate>
+        <div class="form-group">
+            <!-- <label for="search">Search for:</label> -->
+            <input required name="search" (ngModel)="search" id="search" type="text" class="form-control" placeholder="Search for..." />
+            <div *ngIf="search.errors && (search.dirty || search.touched)" class="alert alert-danger">
+                <div [hidden]="!search.errors.required">
+                    Search cannot be empty
+                </div>
+            </div>
+        </div>
+        <button type="submit"  [disabled]="searchForm.invalid" class="btn btn-primary">Search</button>
+        <button type="button" class="btn btn-default">Cancel</button>
+    </form>
+    <div *ngIf="invalidSearch" class="alert alert-danger">
+        Invalid Search
+    </div>
+</div>
