@@ -18,11 +18,12 @@ export class SearchComponent implements OnInit {
   search(formValues) {
     this.searchService.search(formValues.search)
         .subscribe(result => {
-          if (!result) {
-            this.invalidSearch = true;
-          } else {
+          // if (!result) {
+          //   this.invalidSearch = true;
+          // } else {
             //display search results
-          }
+            console.log("result", result);
+          // }
         });
   }
 

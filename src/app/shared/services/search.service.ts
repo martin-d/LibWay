@@ -16,7 +16,9 @@ export class SearchService {
     return this.http.post( `${this.url}`, searchInfo, this.options)
         .do((res: Response) => {
             if (res){
-              return <Array<Book>>res.json();
+                console.info(res);
+                // return res;
+            //   return <Array<Book>>res.json();
                 // return Observable.of(true);
             }
 
