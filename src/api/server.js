@@ -6,6 +6,7 @@ var bodyParser = require("body-parser");
 var app = express();
 app.use(bodyParser.json());
 var fs = require("fs");
+var sierraService = require('./sierraService.js');
 
 app.get('/', function (req, res) {
   res.send('LibWay');
@@ -26,9 +27,6 @@ app.post('/search', function (req, res) {
   res.header('Access-Control-Allow-Credentials', 'true');
   console.log(req.body.genus);
   
-  //TODO:
-  //replace below with call to Sierra API and return back list of books
-  //see src/app/classes/book.ts for reference (return those things for each book)
   var post_data = "grant_type=client_credentials";
   // querystring.stringify({
   //   'compilation_level' : 'ADVANCED_OPTIMIZATIONS',
@@ -60,13 +58,11 @@ app.post('/search', function (req, res) {
   })
   req.write(post_data);
   req.end();
-  // request('https://merlin.mobius.umsystem.edu/iii/sierra-api/v4/token', function (error, response, body) {
-    // if (!error && response.statusCode == 200) {
-    //   var info = JSON.parse(body);
 
-    //   res.send(info);
-    // }
-  // })
+  sierraService.GetToken().then(function (response) {
+    var info = JSON.parse(response);
+    res.send(info);    
+  })
 
 })
 
