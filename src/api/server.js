@@ -57,16 +57,15 @@ app.post('/search', function (req, res) {
     console.log("response is " + response);
     var info = JSON.parse(response);
     console.log("info is " + info.access_token);
-    res.send("success");
 
-//     // var authorizationHeader = "Bearer " + info.access_token
+    var authorizationHeader = "Bearer " + info.access_token;
 
-//     // sierraService.getBook(authorizationHeader).then(function (response) {
-//     //   var info = JSON.parse(response);
-//     //   res.send("info is " + info);
-//     // }).catch(function (error) {
-//     //   res.send("error " + error);
-//     // });
+    sierraService.getBook(authorizationHeader);//.then(function (response) {
+    //   var info = JSON.parse(response);
+    //   res.send("info is " + info);
+    // }).catch(function (error) {
+    //   res.send("error " + error);
+    // });
   }).catch(function(error){
     res.send("error " + error);
   });
