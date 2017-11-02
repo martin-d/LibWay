@@ -7,6 +7,7 @@ var app = express();
 app.use(bodyParser.json());
 var fs = require("fs");
 var sierraService = require('./sierraService.js');
+var Promise = require('promise');
 
 app.get('/', function (req, res) {
   res.send('LibWay');
@@ -25,16 +26,9 @@ app.get('/listBooks', function (req, res) {
 app.post('/search', function (req, res) {
 	res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
   res.header('Access-Control-Allow-Credentials', 'true');
-  console.log(req.body.genus);
+  // console.log("Request: " + req.body.genus);
   
-  var post_data = "grant_type=client_credentials";
-  // querystring.stringify({
-  //   'compilation_level' : 'ADVANCED_OPTIMIZATIONS',
-  //   'output_format': 'json',
-  //   'output_info': 'compiled_code',
-  //     'warning_level' : 'QUIET',
-  //     'js_code' : codestring
-  // });
+  // var post_data = "grant_type=client_credentials";
 
   var post_options = {
     host: 'merlin.mobius.umsystem.edu',
@@ -47,23 +41,36 @@ app.post('/search', function (req, res) {
       }
   };
 
-  var req = https.request(post_options, function(response) {
-    response.setEncoding('utf8');
-    // console.log("response ", response);
-    response.on('data', function (chunk) {
-      console.log('Response: ' + chunk);
-    })
-    // console.log('STATUS: ' + response.statusCode);
-    // console.log('HEADERS: ' + JSON.stringify(response.headers));
-  })
-  req.write(post_data);
-  req.end();
+  // var req = https.request(post_options, function(response) {
+  //   response.setEncoding('utf8');
+  //   // console.log("response ", response);
+  //   response.on('data', function (chunk) {
+  //     console.log('Response: ' + chunk);
+  //   })
+  //   // console.log('STATUS: ' + response.statusCode);
+  //   // console.log('HEADERS: ' + JSON.stringify(response.headers));
+  // })
+  // req.write(post_data);
+  // req.end();
 
-  sierraService.GetToken().then(function (response) {
+  sierraService.getToken().then(function (response) {
+    console.log("response is " + response);
     var info = JSON.parse(response);
-    res.send(info);    
-  })
+    console.log("info is " + info.access_token);
+    res.send("success");
 
+//     // var authorizationHeader = "Bearer " + info.access_token
+
+//     // sierraService.getBook(authorizationHeader).then(function (response) {
+//     //   var info = JSON.parse(response);
+//     //   res.send("info is " + info);
+//     // }).catch(function (error) {
+//     //   res.send("error " + error);
+//     // });
+  }).catch(function(error){
+    res.send("error " + error);
+  });
+  
 })
 
 var server = app.listen(8081, function () {
